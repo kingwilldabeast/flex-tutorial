@@ -17,12 +17,10 @@ export default function Torso (props) {
       // Handler function to toggle flex-direction
     const setRow = () => {
         setDirection('row');
-        setSelectedDirectionButton('row')
     };
 
     const setColumn = () => {
         setDirection('column');
-        setSelectedDirectionButton('column')
     };
 
     const AItoStart = () => {
@@ -89,113 +87,137 @@ export default function Torso (props) {
     return (
       
       <div className="torso">
-        <div className="box-container" style={containerStyle}>
-            <div className="item">
-
-            </div>
-            <div className="item">
-
-            </div>
-            <div className="item">
-
-            </div>
-            <div className="item">
-
-            </div>
-            <div className="item">
-
-            </div>
-
-        </div>
-
         <div className="button-container">
 
             <div className='button-column'>
+                <div className='label' >
+                    flex-direction:
+                </div>
                 <div 
                 className={direction === 'row' ? 'buttonSelected' : 'buttonUnselected'}
                 onClick={setRow}>
-                    flex-direction: row;
+                    row;
                 </div>
                 <div 
                 className={direction === 'column' ? 'buttonSelected' : 'buttonUnselected'}
                 onClick={setColumn}>
-                    flex-direction: column;
+                    column;
                 </div>
             </div>
 
             <div className='button-column'>
-
+                <div className='label' >
+                    align-items:
+                </div>
                 <div
                 className={alignItems === 'flex-start' ? 'buttonSelected' : 'buttonUnselected'}
                 onClick={AItoStart}
                 >
-                    align-items: flex-start;
+                    flex-start;
                 </div>
                 <div 
                 className={alignItems === 'center' ? 'buttonSelected' : 'buttonUnselected'}
                 onClick={AItoCenter}>
-                    align-items: center;
+                    center;
                 </div>
                 <div 
                 className={alignItems === 'flex-end' ? 'buttonSelected' : 'buttonUnselected'}
                 onClick={AItoEnd}>
-                    align-items: flex-end;
+                    flex-end;
                 </div>
             </div>
 
             <div className='button-column'>
+                <div className='label' >
+                    justify-content:
+                </div>
                 <div 
                 className={justifyContent === 'flex-start' ? 'buttonSelected' : 'buttonUnselected'}
                 onClick={JCtoStart}>
-                    justify-content: flex-start;
+                    flex-start;
                 </div>
                 <div 
                 className={justifyContent === 'center' ? 'buttonSelected' : 'buttonUnselected'}
                 onClick={JCtoCenter}>
-                    justify-content: center;
+                    center;
                 </div>
                 <div 
                 className={justifyContent === 'flex-end' ? 'buttonSelected' : 'buttonUnselected'}
                 onClick={JCtoEnd}>
-                    justify-content: flex-end;
+                    flex-end;
                 </div>
                 <div 
                 className={justifyContent === 'space-between' ? 'buttonSelected' : 'buttonUnselected'}
                 onClick={JCtoSpaceBetween}>
-                    justify-content: space-between;
+                    space-between;
                 </div>
                 <div 
                 className={justifyContent === 'space-around' ? 'buttonSelected' : 'buttonUnselected'}
                 onClick={JCtoSpaceAround}>
-                    justify-content: space-around;
+                    space-around;
                 </div>
                 <div 
                 className={justifyContent === 'space-evenly' ? 'buttonSelected' : 'buttonUnselected'}
                 onClick={JCtoSpaceEvenly}>
-                    justify-content: space-evenly;
+                    space-evenly;
                 </div>
             </div>
 
             <div className='button-column'>
 
+                <div className='label' >
+                    gap:
+                </div>
                 <div
                 className={gap === '0px' ? 'buttonSelected' : 'buttonUnselected'}
                 onClick={gapTo0px}>
-                    gap: 0;
+                    0;
                 </div>
                 <div 
                 className={gap === '10px' ? 'buttonSelected' : 'buttonUnselected'}
                 onClick={gapTo10px}>
-                    gap: 10px;
+                    10px;
                 </div>
                 <div 
                 className={gap === '20px' ? 'buttonSelected' : 'buttonUnselected'}
                 onClick={gapTo20px}>
-                    gap: 20px;
+                    20px;
                 </div>
 
             </div>
 
+        </div>     
+ 
+        <div className='y-axis-container'>
+
+
+            <div className='x-axis-container'>
+                <div className="box-container" style={containerStyle}>
+                    <div className="item">
+
+                    </div>
+                    <div className="item">
+
+                    </div>
+                    <div className="item">
+
+                    </div>
+                    <div className="item">
+
+                    </div>
+                    <div className="item">
+
+                    </div>
+
+                </div>
+                <div className='x-axis'>
+                    x-axis
+                </div>  
+            </div>
+
+            <div className='y-axis'>
+                    y-axis
+            </div>  
         </div>
 
       </div>
