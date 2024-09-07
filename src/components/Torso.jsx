@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 export default function Torso (props) {
@@ -13,6 +13,8 @@ export default function Torso (props) {
     const [justifyContent, setJustifyContent] = useState('center');
 
     const [gap, setGap] = useState('0px')
+
+    const [activeButton, setActiveButton] = useState(0);
 
       // Handler function to toggle flex-direction
     const setRow = () => {
@@ -83,6 +85,23 @@ export default function Torso (props) {
         border: '1px solid orange'
     }
 
+    // Handler function for arrow key presses
+        const handleKeyDown = (event) => {
+            if (event.key === 'ArrowRight') {
+            setActiveButton((prev) => (prev + 1) % 4);
+            } else if (event.key === 'ArrowLeft') {
+            setActiveButton((prev) => (prev - 1 + 4) % 4);
+            }
+        };
+
+    // Attach and clean up the event listener
+        useEffect(() => {
+            window.addEventListener('keydown', handleKeyDown);
+            return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+            };
+        }, []);
+
 
     return (
       
@@ -90,7 +109,10 @@ export default function Torso (props) {
         <div className="button-container">
 
             <div className='button-column'>
-                <div className='label' >
+            <div 
+            className = {activeButton === 0 ? 'labelActive' : 'label'}
+            key={0}
+            >
                     flex-direction:
                 </div>
                 <div 
@@ -106,7 +128,10 @@ export default function Torso (props) {
             </div>
 
             <div className='button-column'>
-                <div className='label' >
+                <div 
+                className = {activeButton === 1 ? 'labelActive' : 'label'}
+                key={1}
+                >
                     align-items:
                 </div>
                 <div
@@ -128,7 +153,10 @@ export default function Torso (props) {
             </div>
 
             <div className='button-column'>
-                <div className='label' >
+                <div 
+                className = {activeButton === 2 ? 'labelActive' : 'label'}
+                key={2}
+                >
                     justify-content:
                 </div>
                 <div 
@@ -165,7 +193,10 @@ export default function Torso (props) {
 
             <div className='button-column'>
 
-                <div className='label' >
+                <div 
+                className = {activeButton === 3 ? 'labelActive' : 'label'}
+                key = {3}
+                >
                     gap:
                 </div>
                 <div
@@ -211,12 +242,12 @@ export default function Torso (props) {
 
                 </div>
                 <div className='x-axis'>
-                    x-axis
+                    {direction == 'column' ? 'align-items' : 'justify-content'}
                 </div>  
             </div>
 
             <div className='y-axis'>
-                    y-axis
+                    {direction == 'row' ? 'align-items' : 'justify-content'}
             </div>  
         </div>
 
