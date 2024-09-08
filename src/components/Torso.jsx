@@ -6,8 +6,9 @@ export default function Torso (props) {
     // const thing = ""
 
 
-    const [direction, setDirection] = useState('row');
-    
+    const directionOptions = ['row', 'column']
+    const [direction, setDirection] = useState(directionOptions[1]);
+
     const [alignItems, setAlignItems] = useState('center');
     
     const [justifyContent, setJustifyContent] = useState('center');
@@ -18,11 +19,11 @@ export default function Torso (props) {
 
       // Handler function to toggle flex-direction
     const setRow = () => {
-        setDirection('row');
+        setDirection(directionOptions[0]);
     };
 
     const setColumn = () => {
-        setDirection('column');
+        setDirection(directionOptions[1]);
     };
 
     const AItoStart = () => {
@@ -91,6 +92,20 @@ export default function Torso (props) {
             setActiveButton((prev) => (prev + 1) % 4);
             } else if (event.key === 'ArrowLeft') {
             setActiveButton((prev) => (prev - 1 + 4) % 4);
+            } else if (event.key === 'ArrowDown') {
+                // Move to the next direction
+                setDirection((prevDirection) => {
+                  const currentIndex = directionOptions.indexOf(prevDirection);
+                  const nextIndex = (currentIndex + 1) % directionOptions.length;
+                  return directionOptions[nextIndex];
+                });
+              } else if (event.key === 'ArrowUp') {
+                // Move to the previous direction
+                setDirection((prevDirection) => {
+                  const currentIndex = directionOptions.indexOf(prevDirection);
+                  const prevIndex = (currentIndex - 1 + directionOptions.length) % directionOptions.length;
+                  return directionOptions[prevIndex];
+                });
             }
         };
 
@@ -116,13 +131,13 @@ export default function Torso (props) {
                     flex-direction:
                 </div>
                 <div 
-                className={direction === 'row' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={setRow}>
+                className={direction === directionOptions[0] ? 'buttonSelected' : 'buttonUnselected'}
+                onClick={() => setDirection(directionOptions[0])}>
                     row;
                 </div>
                 <div 
-                className={direction === 'column' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={setColumn}>
+                className={direction === directionOptions[1] ? 'buttonSelected' : 'buttonUnselected'}
+                onClick={() => setDirection(directionOptions[1])}>
                     column;
                 </div>
             </div>
