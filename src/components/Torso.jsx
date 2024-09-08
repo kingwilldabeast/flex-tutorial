@@ -7,72 +7,18 @@ export default function Torso (props) {
 
 
     const directionOptions = ['row', 'column']
-    const [direction, setDirection] = useState(directionOptions[1]);
+    const [direction, setDirection] = useState(directionOptions[0]);
 
-    const [alignItems, setAlignItems] = useState('center');
+    const alignItemOptions = ['flex-start', 'center', 'flex-end']
+    const [alignItems, setAlignItems] = useState(alignItemOptions[0]);
     
-    const [justifyContent, setJustifyContent] = useState('center');
+    const justifyContentOptions = ['flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly']
+    const [justifyContent, setJustifyContent] = useState(justifyContentOptions[0]);
 
-    const [gap, setGap] = useState('0px')
+    const gapOptions = ['0px', '10px', '20px']
+    const [gap, setGap] = useState(gapOptions[0])
 
-    const [activeButton, setActiveButton] = useState(0);
-
-      // Handler function to toggle flex-direction
-    const setRow = () => {
-        setDirection(directionOptions[0]);
-    };
-
-    const setColumn = () => {
-        setDirection(directionOptions[1]);
-    };
-
-    const AItoStart = () => {
-        setAlignItems('flex-start');
-    };
-
-    const AItoCenter = () => {
-        setAlignItems('center');
-    };
-
-    const AItoEnd = () => {
-        setAlignItems('flex-end');
-    };
-
-    const JCtoStart = () => {
-        setJustifyContent('flex-start');
-    };
-
-    const JCtoCenter = () => {
-        setJustifyContent('center');
-    };
-
-    const JCtoEnd = () => {
-        setJustifyContent('flex-end');
-    };
-
-    const JCtoSpaceEvenly = () => {
-        setJustifyContent('space-evenly');
-    };   
-
-    const JCtoSpaceAround = () => {
-        setJustifyContent('space-around');
-    };   
-
-    const JCtoSpaceBetween = () => {
-        setJustifyContent('space-between');
-    };   
-
-    const gapTo0px = () => {
-        setGap('0px')
-    }
-
-    const gapTo10px = () => {
-        setGap('10px')
-    }
-
-    const gapTo20px = () => {
-        setGap('20px')
-    }
+    const [activeButton, setActiveButton] = useState(0);  
 
     const containerStyle = {
         display: 'flex',
@@ -94,18 +40,68 @@ export default function Torso (props) {
             setActiveButton((prev) => (prev - 1 + 4) % 4);
             } else if (event.key === 'ArrowDown') {
                 // Move to the next direction
-                setDirection((prevDirection) => {
-                  const currentIndex = directionOptions.indexOf(prevDirection);
-                  const nextIndex = (currentIndex + 1) % directionOptions.length;
-                  return directionOptions[nextIndex];
-                });
+                switch(activeButton) {
+                    case 0:
+                        setDirection((prevDirection) => {
+                            const currentIndex = directionOptions.indexOf(prevDirection);
+                            const nextIndex = (currentIndex + 1) % directionOptions.length;
+                            return directionOptions[nextIndex];
+                          });
+                        break;
+                    case 1:
+                        setAlignItems((prevAlignItem) => {
+                            const currentIndex = alignItemOptions.indexOf(prevAlignItem);
+                            const nextIndex = (currentIndex + 1) % alignItemOptions.length;
+                            return alignItemOptions[nextIndex];
+                          });
+                        break;
+                    case 2:
+                        setJustifyContent((prevJustifyContent) => {
+                            const currentIndex = justifyContentOptions.indexOf(prevJustifyContent);
+                            const nextIndex = (currentIndex + 1) % justifyContentOptions.length;
+                            return justifyContentOptions[nextIndex];
+                          });
+                        break;
+                    case 3:
+                        setGap((prevGap) => {
+                            const currentIndex = gapOptions.indexOf(prevGap);
+                            const nextIndex = (currentIndex + 1) % gapOptions.length;
+                            return gapOptions[nextIndex];
+                          });
+                        break;
+                }
               } else if (event.key === 'ArrowUp') {
                 // Move to the previous direction
-                setDirection((prevDirection) => {
-                  const currentIndex = directionOptions.indexOf(prevDirection);
-                  const prevIndex = (currentIndex - 1 + directionOptions.length) % directionOptions.length;
-                  return directionOptions[prevIndex];
-                });
+                switch(activeButton) {
+                    case 0:
+                        setDirection((prevDirection) => {
+                            const currentIndex = directionOptions.indexOf(prevDirection);
+                            const prevIndex = (currentIndex - 1 + directionOptions.length) % directionOptions.length;
+                            return directionOptions[prevIndex];
+                          });
+                        break;
+                    case 1:
+                        setAlignItems((prevAlignItem) => {
+                            const currentIndex = alignItemOptions.indexOf(prevAlignItem);
+                            const prevIndex = (currentIndex - 1 + alignItemOptions.length) % alignItemOptions.length;
+                            return alignItemOptions[prevIndex];
+                          });
+                        break;
+                    case 2:
+                        setJustifyContent((prevJustifyContent) => {
+                            const currentIndex = justifyContentOptions.indexOf(prevJustifyContent);
+                            const prevIndex = (currentIndex - 1 + justifyContentOptions.length) % justifyContentOptions.length;
+                            return justifyContentOptions[prevIndex];
+                          });
+                        break;
+                    case 3:
+                        setGap((prevGap) => {
+                            const currentIndex = gapOptions.indexOf(prevGap);
+                            const prevIndex = (currentIndex - 1 + gapOptions.length) % gapOptions.length;
+                            return gapOptions[prevIndex];
+                          });
+                        break;
+                }
             }
         };
 
@@ -132,7 +128,8 @@ export default function Torso (props) {
                 </div>
                 <div 
                 className={direction === directionOptions[0] ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={() => setDirection(directionOptions[0])}>
+                onClick={() => setDirection(directionOptions[0])}
+                >
                     row;
                 </div>
                 <div 
@@ -151,18 +148,20 @@ export default function Torso (props) {
                 </div>
                 <div
                 className={alignItems === 'flex-start' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={AItoStart}
+                onClick={() => setAlignItems(alignItemOptions[0])}
                 >
                     flex-start;
                 </div>
                 <div 
                 className={alignItems === 'center' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={AItoCenter}>
+                onClick={() => setAlignItems(alignItemOptions[1])}
+                >
                     center;
                 </div>
                 <div 
                 className={alignItems === 'flex-end' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={AItoEnd}>
+                onClick={() => setAlignItems(alignItemOptions[2])}
+                >
                     flex-end;
                 </div>
             </div>
@@ -176,32 +175,38 @@ export default function Torso (props) {
                 </div>
                 <div 
                 className={justifyContent === 'flex-start' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={JCtoStart}>
+                onClick={() => setJustifyContent(justifyContentOptions[0])}
+                >
                     flex-start;
                 </div>
                 <div 
                 className={justifyContent === 'center' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={JCtoCenter}>
+                onClick={() => setJustifyContent(justifyContentOptions[1])}
+                >
                     center;
                 </div>
                 <div 
                 className={justifyContent === 'flex-end' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={JCtoEnd}>
+                onClick={() => setJustifyContent(justifyContentOptions[2])}
+                >
                     flex-end;
                 </div>
                 <div 
                 className={justifyContent === 'space-between' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={JCtoSpaceBetween}>
+                onClick={() => setJustifyContent(justifyContentOptions[3])}
+                >
                     space-between;
                 </div>
                 <div 
                 className={justifyContent === 'space-around' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={JCtoSpaceAround}>
+                onClick={() => setJustifyContent(justifyContentOptions[4])}
+                >
                     space-around;
                 </div>
                 <div 
                 className={justifyContent === 'space-evenly' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={JCtoSpaceEvenly}>
+                onClick={() => setJustifyContent(justifyContentOptions[5])}
+                >
                     space-evenly;
                 </div>
             </div>
@@ -216,17 +221,20 @@ export default function Torso (props) {
                 </div>
                 <div
                 className={gap === '0px' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={gapTo0px}>
+                onClick={() => setGap(gapOptions[0])}
+                >
                     0;
                 </div>
                 <div 
                 className={gap === '10px' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={gapTo10px}>
+                onClick={() => setGap(gapOptions[1])}
+                >
                     10px;
                 </div>
                 <div 
                 className={gap === '20px' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={gapTo20px}>
+                onClick={() => setGap(gapOptions[2])}
+                >
                     20px;
                 </div>
 
