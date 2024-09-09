@@ -13,40 +13,92 @@ html, body, #root, .app {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  background:
+      conic-gradient(at 10% 50%,#0000 75%,#202024 0),
+      conic-gradient(at 10% 50%,#0000 75%,#202024 0) calc(1*32px) calc(3*32px),
+      conic-gradient(at 10% 50%,#0000 75%,#202024 0) calc(2*32px) calc(1*32px),
+      conic-gradient(at 10% 50%,#0000 75%,#202024 0) calc(3*32px) calc(4*32px),
+      conic-gradient(at 10% 50%,#0000 75%,#202024 0) calc(4*32px) calc(2*32px),
+      conic-gradient(at 50% 10%,#0000 75%,#202024 0) 0 calc(4*32px),
+      conic-gradient(at 50% 10%,#0000 75%,#202024 0) calc(1*32px) calc(2*32px),
+      conic-gradient(at 50% 10%,#0000 75%,#202024 0) calc(2*32px) 0,
+      conic-gradient(at 50% 10%,#0000 75%,#202024 0) calc(3*32px) calc(3*32px),
+      conic-gradient(at 50% 10%,#0000 75%,#202024 0) calc(4*32px) calc(1*32px),
+      #0d0f10;
+background-size: 160px 160px;
+
 }
 
 .header {
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  color: pink;
+  background-color: #4a4848;
+  width: 100%;
+  text-align: center;
+  background: rgba(255,255,255,0.3);
+-webkit-backdrop-filter: blur(2px);
+backdrop-filter: blur(2px);
+border: 1px solid rgba(255,255,255,0.25);
 }
 
 .torso {
-  border: 1px solid orange;
+  /* border: 1px solid orange; */
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
-.y-axis-container {
-  border: 1px solid green;
+.chart-container {
+  position: relative;
+  /* border: 1px solid green; */
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   width: 70%;
-  height: 100%;
+  height: 70%;
   /* gap: 0px; */
 }
 
-.x-axis-container {
-  border: 1px solid red;
-  display: flex;
+.chart {
+  position: relative;
+  /* border: 1px solid red; */
+  background-color: #4a4848;
+  border-radius: 10px;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
   width: 100%;
-  height: 100%;
+  height: 80%;
+  padding: 40px;
+}
+
+.x-axis-label {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px;
+  color: pink;
+  font-weight: bold;
+  /* background: #f0f0f0;  */
+  /* border-top: 1px solid #e11111;  */
+}
+
+.y-axis-label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left top;
+  padding: 5px;
+  color: yellowgreen;
+  font-weight: bold;
+  /* background: #f0f0f0; */
+  /* border-right: 1px solid #000;  */
 }
 
 .overlap-container {
@@ -60,7 +112,7 @@ html, body, #root, .app {
   /* background-color: rgb(152, 140, 140); */
   width: 100%;
   height: 100%;
-  border: 1px solid blue;
+  border: 2px solid rgb(37, 185, 244);
   display: flex;
 }
 
@@ -69,23 +121,8 @@ html, body, #root, .app {
   /* background-color: rgb(152, 140, 140); */
   width: 100%;
   height: 100%;
-  border: 1px solid blue;
+  border: 2px solid rgb(37, 185, 244);
   display: flex;
-}
-
-.x-axis {
-  border: 1px solid blue;
-  width: 200px;
-
-}
-
-.y-axis {
-  border: 1px solid blue;
-  width: 200px;
-  height: 20px;
-  /* height: 10%; */
-  transform: rotate(90deg);
-
 }
 
 .item {
@@ -101,9 +138,20 @@ html, body, #root, .app {
   border: 2px solid rgb(37, 185, 244);
 }
 
-.button-container {
-  border: 1px solid purple;
+.left-side {
+  display: flex;
+  flex-direction: column;
   width: 25%;
+  align-items: center;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+}
+
+.button-container {
+  /* border: 1px solid purple; */
   /* height: 30%; */
   display: flex;
   flex-direction: row;
@@ -121,15 +169,19 @@ html, body, #root, .app {
   margin: 5px;
   border-radius: 4px;
   font-size: 16px;
+  transition: all 0.3s ease;
+
 }
 
 .labelActive {
-  border: 2px solid orange;
-  background-color: rgb(152, 140, 140);
+  border: 2px solid rgb(80, 79, 78);
+  background-color: rgb(207, 152, 23);
   padding: 10px;
   margin: 5px;
   border-radius: 4px;
   font-size: 16px;
+  transition: all 0.3s ease;
+
 }
 
 .buttonSelected {

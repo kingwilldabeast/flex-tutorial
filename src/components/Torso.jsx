@@ -62,6 +62,10 @@ export default function Torso (props) {
         border: '1px solid orange'
     }
 
+    const xAxisColor = direction === 'column' ? 'pink' : 'green';
+    const yAxisColor = direction === 'column' ? 'green' : 'pink';
+
+
     // Handler function for arrow key presses
     const handleKeyDown = (event) => {
         switch (event.key) {
@@ -143,131 +147,139 @@ export default function Torso (props) {
     return (
       
       <div className="torso">
-        <button onClick={() => setButtonClicked(true)}>Randomize</button>
-        <div className="button-container">
-
-            <div className='button-column'>
-            <div 
-            className = {activeButton === 0 ? 'labelActive' : 'label'}
-            key={0}
-            >
-                    flex-direction:
-                </div>
-                <div 
-                className={direction === directionOptions[0] ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={() => setDirection(directionOptions[0])}
-                >
-                    row;
-                </div>
-                <div 
-                className={direction === directionOptions[1] ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={() => setDirection(directionOptions[1])}>
-                    column;
-                </div>
-            </div>
-
-            <div className='button-column'>
-                <div 
-                className = {activeButton === 1 ? 'labelActive' : 'label'}
-                key={1}
-                >
-                    align-items:
-                </div>
-                <div
-                className={alignItems === 'flex-start' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={() => setAlignItems(alignItemOptions[0])}
-                >
-                    flex-start;
-                </div>
-                <div 
-                className={alignItems === 'center' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={() => setAlignItems(alignItemOptions[1])}
-                >
-                    center;
-                </div>
-                <div 
-                className={alignItems === 'flex-end' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={() => setAlignItems(alignItemOptions[2])}
-                >
-                    flex-end;
-                </div>
-            </div>
-
-            <div className='button-column'>
-                <div 
-                className = {activeButton === 2 ? 'labelActive' : 'label'}
-                key={2}
-                >
-                    justify-content:
-                </div>
-                <div 
-                className={justifyContent === 'flex-start' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={() => setJustifyContent(justifyContentOptions[0])}
-                >
-                    flex-start;
-                </div>
-                <div 
-                className={justifyContent === 'center' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={() => setJustifyContent(justifyContentOptions[1])}
-                >
-                    center;
-                </div>
-                <div 
-                className={justifyContent === 'flex-end' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={() => setJustifyContent(justifyContentOptions[2])}
-                >
-                    flex-end;
-                </div>
-                <div 
-                className={justifyContent === 'space-between' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={() => setJustifyContent(justifyContentOptions[3])}
-                >
-                    space-between;
-                </div>
-                <div 
-                className={justifyContent === 'space-around' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={() => setJustifyContent(justifyContentOptions[4])}
-                >
-                    space-around;
-                </div>
-                <div 
-                className={justifyContent === 'space-evenly' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={() => setJustifyContent(justifyContentOptions[5])}
-                >
-                    space-evenly;
-                </div>
-            </div>
-
-            <div className='button-column'>
-
-                <div 
-                className = {activeButton === 3 ? 'labelActive' : 'label'}
-                key = {3}
-                >
-                    gap:
-                </div>
-                <div
-                className={gap === '0px' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={() => setGap(gapOptions[0])}
-                >
-                    0;
-                </div>
-                <div 
-                className={gap === '10px' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={() => setGap(gapOptions[1])}
-                >
-                    10px;
-                </div>
-
+        <div className='left-side'>
+            <div className='controls'>
+            <button onClick={() => setButtonClicked(true)}>Randomize</button>
+            <button >Copy Code</button>
+            <button >Enter</button>
 
             </div>
+            <div className="button-container">
 
-        </div>     
+                <div className='button-column'>
+                <div 
+                className = {activeButton === 0 ? 'labelActive' : 'label'}
+                key={0}
+                >
+                        flex-direction:
+                    </div>
+                    <div 
+                    className={direction === directionOptions[0] ? 'buttonSelected' : 'buttonUnselected'} 
+                    onClick={() => setDirection(directionOptions[0])}
+                    >
+                        row;
+                    </div>
+                    <div 
+                    className={direction === directionOptions[1] ? 'buttonSelected' : 'buttonUnselected'}
+                    onClick={() => setDirection(directionOptions[1])}>
+                        column;
+                    </div>
+                </div>
+
+                <div className='button-column'>
+                    <div 
+                    className = {activeButton === 1 ? 'labelActive' : 'label'}
+                    key={1}
+                    >
+                        align-items:
+                    </div>
+                    <div
+                    className={alignItems === 'flex-start' ? 'buttonSelected' : 'buttonUnselected'}
+                    onClick={() => setAlignItems(alignItemOptions[0])}
+                    >
+                        flex-start;
+                    </div>
+                    <div 
+                    className={alignItems === 'center' ? 'buttonSelected' : 'buttonUnselected'}
+                    onClick={() => setAlignItems(alignItemOptions[1])}
+                    >
+                        center;
+                    </div>
+                    <div 
+                    className={alignItems === 'flex-end' ? 'buttonSelected' : 'buttonUnselected'}
+                    onClick={() => setAlignItems(alignItemOptions[2])}
+                    >
+                        flex-end;
+                    </div>
+                </div>
+
+                <div className='button-column'>
+                    <div 
+                    className = {activeButton === 2 ? 'labelActive' : 'label'}
+                    key={2}
+                    >
+                        justify-content:
+                    </div>
+                    <div 
+                    className={justifyContent === 'flex-start' ? 'buttonSelected' : 'buttonUnselected'}
+                    onClick={() => setJustifyContent(justifyContentOptions[0])}
+                    >
+                        flex-start;
+                    </div>
+                    <div 
+                    className={justifyContent === 'center' ? 'buttonSelected' : 'buttonUnselected'}
+                    onClick={() => setJustifyContent(justifyContentOptions[1])}
+                    >
+                        center;
+                    </div>
+                    <div 
+                    className={justifyContent === 'flex-end' ? 'buttonSelected' : 'buttonUnselected'}
+                    onClick={() => setJustifyContent(justifyContentOptions[2])}
+                    >
+                        flex-end;
+                    </div>
+                    <div 
+                    className={justifyContent === 'space-between' ? 'buttonSelected' : 'buttonUnselected'}
+                    onClick={() => setJustifyContent(justifyContentOptions[3])}
+                    >
+                        space-between;
+                    </div>
+                    <div 
+                    className={justifyContent === 'space-around' ? 'buttonSelected' : 'buttonUnselected'}
+                    onClick={() => setJustifyContent(justifyContentOptions[4])}
+                    >
+                        space-around;
+                    </div>
+                    <div 
+                    className={justifyContent === 'space-evenly' ? 'buttonSelected' : 'buttonUnselected'}
+                    onClick={() => setJustifyContent(justifyContentOptions[5])}
+                    >
+                        space-evenly;
+                    </div>
+                </div>
+
+                <div className='button-column'>
+
+                    <div 
+                    className = {activeButton === 3 ? 'labelActive' : 'label'}
+                    key = {3}
+                    >
+                        gap:
+                    </div>
+                    <div
+                    className={gap === '0px' ? 'buttonSelected' : 'buttonUnselected'}
+                    onClick={() => setGap(gapOptions[0])}
+                    >
+                        0;
+                    </div>
+                    <div 
+                    className={gap === '10px' ? 'buttonSelected' : 'buttonUnselected'}
+                    onClick={() => setGap(gapOptions[1])}
+                    >
+                        10px;
+                    </div>
+
+
+                </div>
+
+            </div>  
+        </div>
+   
  
-        <div className='y-axis-container'>
+        <div className='chart-container'>
 
 
-            <div className='x-axis-container'>
+            <div className='chart'>
 
                 <div className='overlap-container'>
                     <div className="box-container" style={containerStyle}>
@@ -309,13 +321,14 @@ export default function Torso (props) {
                     </div>
                 </div>
 
-            <div className='x-axis'>
+                <div className='x-axis-label' style={{ color: xAxisColor}} >
                     {direction == 'column' ? 'align-items' : 'justify-content'}
-                </div>  
+                </div>
+
             </div>
 
-            <div className='y-axis'>
-                    {direction == 'row' ? 'align-items' : 'justify-content'}
+            <div className='y-axis-label' style={{ color: yAxisColor}}>
+                {direction == 'row' ? 'align-items' : 'justify-content'}
             </div>  
         </div>
 
