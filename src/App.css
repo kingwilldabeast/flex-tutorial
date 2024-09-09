@@ -3,7 +3,7 @@ html, body, #root, .app {
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
 
 }
 
@@ -49,12 +49,28 @@ html, body, #root, .app {
   height: 100%;
 }
 
+.overlap-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 .box-container {
+  position: absolute;
+  /* background-color: rgb(152, 140, 140); */
   width: 100%;
   height: 100%;
   border: 1px solid blue;
   display: flex;
-  flex-direction: row;
+}
+
+.target-container {
+  position: absolute;
+  /* background-color: rgb(152, 140, 140); */
+  width: 100%;
+  height: 100%;
+  border: 1px solid blue;
+  display: flex;
 }
 
 .x-axis {
@@ -75,7 +91,14 @@ html, body, #root, .app {
 .item {
   height: 50px;
   width: 50px;
-  border: 1px solid yellowgreen;
+  background-color: yellowgreen;
+  border: 2px solid transparent;
+}
+
+.target {
+  height: 50px;
+  width: 50px;
+  border: 2px solid rgb(37, 185, 244);
 }
 
 .button-container {

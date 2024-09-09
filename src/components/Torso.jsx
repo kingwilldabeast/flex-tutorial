@@ -15,10 +15,21 @@ export default function Torso (props) {
     const justifyContentOptions = ['flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly']
     const [justifyContent, setJustifyContent] = useState(justifyContentOptions[0]);
 
-    const gapOptions = ['0px', '10px', '20px']
+    const gapOptions = ['0px', '10px']
     const [gap, setGap] = useState(gapOptions[0])
 
+    const [targetDirection, setTargetDirection] = useState(directionOptions[0]);
+
+    const [targetAlignItems, setTargetAlignItems] = useState(alignItemOptions[0]);
+    
+    const [targetJustifyContent, setTargetJustifyContent] = useState(justifyContentOptions[0]);
+
+    const [targetGap, setTargetGap] = useState(gapOptions[0])
+
     const [activeButton, setActiveButton] = useState(0);  
+
+    const [buttonClicked, setButtonClicked] = useState(false);
+
 
     const containerStyle = {
         display: 'flex',
@@ -26,84 +37,93 @@ export default function Torso (props) {
         alignItems: alignItems,
         justifyContent: justifyContent,
         gap: gap
-      };
+    };
+
+    const targetContainerStyle = {
+        display: 'flex',
+        flexDirection: targetDirection,
+        alignItems: targetAlignItems,
+        justifyContent: targetJustifyContent,
+        gap: targetGap
+    }
+
+    const randomizeTarget = () => {
+        setTargetDirection(directionOptions[getRandomInt(0,directionOptions.length-1)])
+        setTargetAlignItems(alignItemOptions[getRandomInt(0,alignItemOptions.length-1)])
+        setTargetJustifyContent(justifyContentOptions[getRandomInt(0,justifyContentOptions.length-1)])
+        setTargetGap(gapOptions[getRandomInt(0,gapOptions.length-1)])
+    }
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
     const buttonSelected = {
         border: '1px solid orange'
     }
 
     // Handler function for arrow key presses
-        const handleKeyDown = (event) => {
-            if (event.key === 'ArrowRight') {
+    const handleKeyDown = (event) => {
+        switch (event.key) {
+          case 'ArrowRight':
             setActiveButton((prev) => (prev + 1) % 4);
-            } else if (event.key === 'ArrowLeft') {
+            break;
+          case 'ArrowLeft':
             setActiveButton((prev) => (prev - 1 + 4) % 4);
-            } else if (event.key === 'ArrowDown') {
-                // Move to the next direction
-                switch(activeButton) {
-                    case 0:
-                        setDirection((prevDirection) => {
-                            const currentIndex = directionOptions.indexOf(prevDirection);
-                            const nextIndex = (currentIndex + 1) % directionOptions.length;
-                            return directionOptions[nextIndex];
-                          });
-                        break;
-                    case 1:
-                        setAlignItems((prevAlignItem) => {
-                            const currentIndex = alignItemOptions.indexOf(prevAlignItem);
-                            const nextIndex = (currentIndex + 1) % alignItemOptions.length;
-                            return alignItemOptions[nextIndex];
-                          });
-                        break;
-                    case 2:
-                        setJustifyContent((prevJustifyContent) => {
-                            const currentIndex = justifyContentOptions.indexOf(prevJustifyContent);
-                            const nextIndex = (currentIndex + 1) % justifyContentOptions.length;
-                            return justifyContentOptions[nextIndex];
-                          });
-                        break;
-                    case 3:
-                        setGap((prevGap) => {
-                            const currentIndex = gapOptions.indexOf(prevGap);
-                            const nextIndex = (currentIndex + 1) % gapOptions.length;
-                            return gapOptions[nextIndex];
-                          });
-                        break;
-                }
-              } else if (event.key === 'ArrowUp') {
-                // Move to the previous direction
-                switch(activeButton) {
-                    case 0:
-                        setDirection((prevDirection) => {
-                            const currentIndex = directionOptions.indexOf(prevDirection);
-                            const prevIndex = (currentIndex - 1 + directionOptions.length) % directionOptions.length;
-                            return directionOptions[prevIndex];
-                          });
-                        break;
-                    case 1:
-                        setAlignItems((prevAlignItem) => {
-                            const currentIndex = alignItemOptions.indexOf(prevAlignItem);
-                            const prevIndex = (currentIndex - 1 + alignItemOptions.length) % alignItemOptions.length;
-                            return alignItemOptions[prevIndex];
-                          });
-                        break;
-                    case 2:
-                        setJustifyContent((prevJustifyContent) => {
-                            const currentIndex = justifyContentOptions.indexOf(prevJustifyContent);
-                            const prevIndex = (currentIndex - 1 + justifyContentOptions.length) % justifyContentOptions.length;
-                            return justifyContentOptions[prevIndex];
-                          });
-                        break;
-                    case 3:
-                        setGap((prevGap) => {
-                            const currentIndex = gapOptions.indexOf(prevGap);
-                            const prevIndex = (currentIndex - 1 + gapOptions.length) % gapOptions.length;
-                            return gapOptions[prevIndex];
-                          });
-                        break;
-                }
-            }
-        };
+            break;
+          case 'ArrowDown':
+            updateOption('down');
+            break;
+          case 'ArrowUp':
+            updateOption('up');
+            break;
+          default:
+            break;
+        }
+      };
+    
+      const updateOption = (direction) => {
+        switch (activeButton) {
+          case 0:
+            setDirection((prev) => {
+              const index = directionOptions.indexOf(prev);
+              const newIndex = direction === 'down' 
+                ? (index + 1) % directionOptions.length
+                : (index - 1 + directionOptions.length) % directionOptions.length;
+              return directionOptions[newIndex];
+            });
+            break;
+          case 1:
+            setAlignItems((prev) => {
+              const index = alignItemOptions.indexOf(prev);
+              const newIndex = direction === 'down' 
+                ? (index + 1) % alignItemOptions.length
+                : (index - 1 + alignItemOptions.length) % alignItemOptions.length;
+              return alignItemOptions[newIndex];
+            });
+            break;
+          case 2:
+            setJustifyContent((prev) => {
+              const index = justifyContentOptions.indexOf(prev);
+              const newIndex = direction === 'down' 
+                ? (index + 1) % justifyContentOptions.length
+                : (index - 1 + justifyContentOptions.length) % justifyContentOptions.length;
+              return justifyContentOptions[newIndex];
+            });
+            break;
+          case 3:
+            setGap((prev) => {
+              const index = gapOptions.indexOf(prev);
+              const newIndex = direction === 'down' 
+                ? (index + 1) % gapOptions.length
+                : (index - 1 + gapOptions.length) % gapOptions.length;
+              return gapOptions[newIndex];
+            });
+            break;
+          default:
+            break;
+        }
+      };
 
     // Attach and clean up the event listener
         useEffect(() => {
@@ -111,12 +131,19 @@ export default function Torso (props) {
             return () => {
             window.removeEventListener('keydown', handleKeyDown);
             };
-        }, []);
+        }, [activeButton]);
 
+        useEffect(() => {
+            if (buttonClicked) {
+              randomizeTarget();
+              setButtonClicked(false); // Reset buttonClicked to prevent continuous updates
+            }
+          }, [buttonClicked]);
 
     return (
       
       <div className="torso">
+        <button onClick={() => setButtonClicked(true)}>Randomize</button>
         <div className="button-container">
 
             <div className='button-column'>
@@ -231,12 +258,7 @@ export default function Torso (props) {
                 >
                     10px;
                 </div>
-                <div 
-                className={gap === '20px' ? 'buttonSelected' : 'buttonUnselected'}
-                onClick={() => setGap(gapOptions[2])}
-                >
-                    20px;
-                </div>
+
 
             </div>
 
@@ -246,25 +268,48 @@ export default function Torso (props) {
 
 
             <div className='x-axis-container'>
-                <div className="box-container" style={containerStyle}>
-                    <div className="item">
+
+                <div className='overlap-container'>
+                    <div className="box-container" style={containerStyle}>
+                        <div className="item">
+
+                        </div>
+                        <div className="item">
+
+                        </div>
+                        <div className="item">
+
+                        </div>
+                        <div className="item">
+
+                        </div>
+                        <div className="item">
+
+                        </div>
+
+                    </div>    
+
+                    <div className="target-container" style={targetContainerStyle}>
+                        <div className="target">
+
+                        </div>
+                        <div className="target">
+
+                        </div>
+                        <div className="target">
+
+                        </div>
+                        <div className="target">
+
+                        </div>
+                        <div className="target">
+
+                        </div>
 
                     </div>
-                    <div className="item">
-
-                    </div>
-                    <div className="item">
-
-                    </div>
-                    <div className="item">
-
-                    </div>
-                    <div className="item">
-
-                    </div>
-
                 </div>
-                <div className='x-axis'>
+
+            <div className='x-axis'>
                     {direction == 'column' ? 'align-items' : 'justify-content'}
                 </div>  
             </div>
