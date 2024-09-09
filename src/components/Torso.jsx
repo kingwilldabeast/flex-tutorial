@@ -6,7 +6,7 @@ export default function Torso (props) {
     // const thing = ""
 
 
-    const directionOptions = ['row', 'column']
+    const directionOptions = ['row', 'row-reverse', 'column', 'column-reverse']
     const [direction, setDirection] = useState(directionOptions[0]);
 
     const alignItemOptions = ['flex-start', 'center', 'flex-end']
@@ -62,8 +62,8 @@ export default function Torso (props) {
         border: '1px solid orange'
     }
 
-    const xAxisColor = direction === 'column' ? 'pink' : 'green';
-    const yAxisColor = direction === 'column' ? 'green' : 'pink';
+    const xAxisColor = direction === 'column' || direction === 'column-reverse' ? 'pink' : 'yellow';
+    const yAxisColor = direction === 'column' || direction === 'column-reverse' ? 'yellow' : 'pink';
 
 
     // Handler function for arrow key presses
@@ -156,23 +156,32 @@ export default function Torso (props) {
             <div className="button-container">
 
                 <div className='button-column'>
-                <div 
-                className = {activeButton === 0 ? 'labelActive' : 'label'}
-                key={0}
-                >
-                        flex-direction:
-                    </div>
                     <div 
-                    className={activeButton === 0 && direction === directionOptions[0] ? 'buttonActive' : (direction === directionOptions[0] ? 'buttonSelected' : 'buttonUnselected')} 
-                    onClick={() => setDirection(directionOptions[0])}
+                    className = 'label'
+                    key={0}
                     >
-                        row;
-                    </div>
-                    <div 
-                    className={activeButton === 0 && direction === directionOptions[1] ? 'buttonActive' : (direction === directionOptions[1] ? 'buttonSelected' : 'buttonUnselected')} 
-                    onClick={() => setDirection(directionOptions[1])}>
-                        column;
-                    </div>
+                        flex-direction:
+
+                            
+                        {directionOptions.map((option, index) => (
+                        <div
+                        key={option} // Use a unique key for each element
+                        className={
+                            activeButton === 0 && direction === option
+                            ? 'buttonActive'
+                            : direction === option
+                            ? 'buttonSelected'
+                            : 'buttonUnselected'
+                        }
+                        onClick={() => {
+                            setDirection(option);
+                            setActiveButton(0);
+                        }}
+                        >
+                        {option + ";"}
+                        </div>
+                    ))}
+                </div>
                 </div>
 
                 <div className='button-column'>
@@ -282,38 +291,38 @@ export default function Torso (props) {
 
                 <div className='overlap-container'>
                     <div className="box-container" style={containerStyle}>
-                        <div className="item">
-
+                        <div className="item1">
+                            A
                         </div>
-                        <div className="item">
-
+                        <div className="item2">
+                            B
                         </div>
-                        <div className="item">
-
+                        <div className="item3">
+                            C
                         </div>
-                        <div className="item">
-
+                        <div className="item4">
+                            D
                         </div>
-                        <div className="item">
-
+                        <div className="item5">
+                            E
                         </div>
 
                     </div>    
 
                     <div className="target-container" style={targetContainerStyle}>
-                        <div className="target">
+                        <div className="target1">
 
                         </div>
-                        <div className="target">
+                        <div className="target2">
 
                         </div>
-                        <div className="target">
+                        <div className="target3">
 
                         </div>
-                        <div className="target">
+                        <div className="target4">
 
                         </div>
-                        <div className="target">
+                        <div className="target5">
 
                         </div>
 
@@ -321,13 +330,13 @@ export default function Torso (props) {
                 </div>
 
                 <div className='x-axis-label' style={{ color: xAxisColor}} >
-                    {direction == 'column' ? 'align-items' : 'justify-content'}
+                    {direction == 'column' || direction == 'column-reverse' ? 'align-items' : 'justify-content'}
                 </div>
 
             </div>
 
             <div className='y-axis-label' style={{ color: yAxisColor}}>
-                {direction == 'row' ? 'align-items' : 'justify-content'}
+                {direction == 'row' || direction == 'row-reverse' ? 'align-items' : 'justify-content'}
             </div>  
         </div>
 

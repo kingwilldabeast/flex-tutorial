@@ -125,16 +125,45 @@ border: 1px solid rgba(255,255,255,0.25);
   display: flex;
 }
 
-.item {
-  height: 50px;
-  width: 50px;
+.item1, .item2, .item3, .item4, .item5 {
   background-color: yellowgreen;
   border: 2px solid transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.target {
+.item1, .target1 {
   height: 50px;
   width: 50px;
+  border-radius: 50px;
+}
+
+.item2, .target2 {
+  height: 40px;
+  width: 60px;
+  border-radius: 10px;
+}
+
+.item3, .target3 {
+  height: 40px;
+  width: 70px;
+  border-radius: 20px;
+}
+
+.item4, .target4 {
+  height: 70px;
+  width: 50px;
+  border-radius: 15px;
+}
+
+.item5, .target5 {
+  height: 30px;
+  width: 50px;
+  border-radius: 5px;
+}
+
+.target1, .target2, .target3, .target4, .target5 {
   border: 2px solid rgb(37, 185, 244);
 }
 
