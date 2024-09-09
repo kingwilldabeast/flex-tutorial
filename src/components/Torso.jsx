@@ -151,7 +151,6 @@ export default function Torso (props) {
             <div className='controls'>
             <button onClick={() => setButtonClicked(true)}>Randomize</button>
             <button >Copy Code</button>
-            <button >Enter</button>
 
             </div>
             <div className="button-container">
@@ -164,13 +163,13 @@ export default function Torso (props) {
                         flex-direction:
                     </div>
                     <div 
-                    className={direction === directionOptions[0] ? 'buttonSelected' : 'buttonUnselected'} 
+                    className={activeButton === 0 && direction === directionOptions[0] ? 'buttonActive' : (direction === directionOptions[0] ? 'buttonSelected' : 'buttonUnselected')} 
                     onClick={() => setDirection(directionOptions[0])}
                     >
                         row;
                     </div>
                     <div 
-                    className={direction === directionOptions[1] ? 'buttonSelected' : 'buttonUnselected'}
+                    className={activeButton === 0 && direction === directionOptions[1] ? 'buttonActive' : (direction === directionOptions[1] ? 'buttonSelected' : 'buttonUnselected')} 
                     onClick={() => setDirection(directionOptions[1])}>
                         column;
                     </div>
@@ -184,19 +183,19 @@ export default function Torso (props) {
                         align-items:
                     </div>
                     <div
-                    className={alignItems === 'flex-start' ? 'buttonSelected' : 'buttonUnselected'}
+                    className={activeButton === 1 && alignItems === alignItemOptions[0] ? 'buttonActive' : (alignItems === alignItemOptions[0] ? 'buttonSelected' : 'buttonUnselected')} 
                     onClick={() => setAlignItems(alignItemOptions[0])}
                     >
                         flex-start;
                     </div>
                     <div 
-                    className={alignItems === 'center' ? 'buttonSelected' : 'buttonUnselected'}
+                    className={activeButton === 1 && alignItems === alignItemOptions[1] ? 'buttonActive' : (alignItems === alignItemOptions[1] ? 'buttonSelected' : 'buttonUnselected')} 
                     onClick={() => setAlignItems(alignItemOptions[1])}
                     >
                         center;
                     </div>
                     <div 
-                    className={alignItems === 'flex-end' ? 'buttonSelected' : 'buttonUnselected'}
+                    className={activeButton === 1 && alignItems === alignItemOptions[2] ? 'buttonActive' : (alignItems === alignItemOptions[2] ? 'buttonSelected' : 'buttonUnselected')} 
                     onClick={() => setAlignItems(alignItemOptions[2])}
                     >
                         flex-end;
@@ -211,37 +210,37 @@ export default function Torso (props) {
                         justify-content:
                     </div>
                     <div 
-                    className={justifyContent === 'flex-start' ? 'buttonSelected' : 'buttonUnselected'}
+                    className={activeButton === 2 && justifyContent === justifyContentOptions[0] ? 'buttonActive' : (justifyContent === justifyContentOptions[0] ? 'buttonSelected' : 'buttonUnselected')} 
                     onClick={() => setJustifyContent(justifyContentOptions[0])}
                     >
                         flex-start;
                     </div>
                     <div 
-                    className={justifyContent === 'center' ? 'buttonSelected' : 'buttonUnselected'}
+                    className={activeButton === 2 && justifyContent === justifyContentOptions[1] ? 'buttonActive' : (justifyContent === justifyContentOptions[1] ? 'buttonSelected' : 'buttonUnselected')} 
                     onClick={() => setJustifyContent(justifyContentOptions[1])}
                     >
                         center;
                     </div>
                     <div 
-                    className={justifyContent === 'flex-end' ? 'buttonSelected' : 'buttonUnselected'}
+                    className={activeButton === 2 && justifyContent === justifyContentOptions[2] ? 'buttonActive' : (justifyContent === justifyContentOptions[2] ? 'buttonSelected' : 'buttonUnselected')} 
                     onClick={() => setJustifyContent(justifyContentOptions[2])}
                     >
                         flex-end;
                     </div>
                     <div 
-                    className={justifyContent === 'space-between' ? 'buttonSelected' : 'buttonUnselected'}
+                    className={activeButton === 2 && justifyContent === justifyContentOptions[3] ? 'buttonActive' : (justifyContent === justifyContentOptions[3] ? 'buttonSelected' : 'buttonUnselected')} 
                     onClick={() => setJustifyContent(justifyContentOptions[3])}
                     >
                         space-between;
                     </div>
                     <div 
-                    className={justifyContent === 'space-around' ? 'buttonSelected' : 'buttonUnselected'}
+                    className={activeButton === 2 && justifyContent === justifyContentOptions[4] ? 'buttonActive' : (justifyContent === justifyContentOptions[4] ? 'buttonSelected' : 'buttonUnselected')} 
                     onClick={() => setJustifyContent(justifyContentOptions[4])}
                     >
                         space-around;
                     </div>
                     <div 
-                    className={justifyContent === 'space-evenly' ? 'buttonSelected' : 'buttonUnselected'}
+                    className={activeButton === 2 && justifyContent === justifyContentOptions[5] ? 'buttonActive' : (justifyContent === justifyContentOptions[5] ? 'buttonSelected' : 'buttonUnselected')} 
                     onClick={() => setJustifyContent(justifyContentOptions[5])}
                     >
                         space-evenly;
@@ -257,13 +256,13 @@ export default function Torso (props) {
                         gap:
                     </div>
                     <div
-                    className={gap === '0px' ? 'buttonSelected' : 'buttonUnselected'}
+                    className={activeButton === 3 && gap === gapOptions[0] ? 'buttonActive' : (gap === gapOptions[0] ? 'buttonSelected' : 'buttonUnselected')} 
                     onClick={() => setGap(gapOptions[0])}
                     >
                         0;
                     </div>
                     <div 
-                    className={gap === '10px' ? 'buttonSelected' : 'buttonUnselected'}
+                    className={activeButton === 3 && gap === gapOptions[1] ? 'buttonActive' : (gap === gapOptions[1] ? 'buttonSelected' : 'buttonUnselected')} 
                     onClick={() => setGap(gapOptions[1])}
                     >
                         10px;

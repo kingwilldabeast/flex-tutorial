@@ -175,7 +175,20 @@ border: 1px solid rgba(255,255,255,0.25);
 
 .labelActive {
   border: 2px solid rgb(80, 79, 78);
-  background-color: rgb(207, 152, 23);
+  /* background-color: rgb(207, 152, 23); */
+  background-color: rgb(152, 140, 140);
+  padding: 10px;
+  margin: 5px;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.buttonActive {
+  border: 2px dashed orange;
+  background-color: white;
+  /* color: orange; */
+  cursor: pointer;
   padding: 10px;
   margin: 5px;
   border-radius: 4px;
