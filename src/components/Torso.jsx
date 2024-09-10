@@ -65,6 +65,27 @@ export default function Torso (props) {
     const xAxisColor = direction === 'column' || direction === 'column-reverse' ? 'pink' : 'yellow';
     const yAxisColor = direction === 'column' || direction === 'column-reverse' ? 'yellow' : 'pink';
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [textToCopy, setTextToCopy ]= useState("This is the text to copy!")
+
+    const openModal = () => {
+        const textInProgress = `flex-direction: ${direction};\njustify-content: ${justifyContent};\nalign-items: ${alignItems};\ngap: ${gap};`;
+        setTextToCopy(textInProgress)
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+        alert("Text copied to clipboard!");
+        }, (err) => {
+        console.error("Failed to copy text: ", err);
+        });
+    };
 
     // Handler function for arrow key presses
     const handleKeyDown = (event) => {
@@ -101,21 +122,21 @@ export default function Torso (props) {
             });
             break;
           case 1:
-            setAlignItems((prev) => {
-              const index = alignItemOptions.indexOf(prev);
-              const newIndex = direction === 'down' 
-                ? (index + 1) % alignItemOptions.length
-                : (index - 1 + alignItemOptions.length) % alignItemOptions.length;
-              return alignItemOptions[newIndex];
-            });
-            break;
-          case 2:
             setJustifyContent((prev) => {
               const index = justifyContentOptions.indexOf(prev);
               const newIndex = direction === 'down' 
                 ? (index + 1) % justifyContentOptions.length
                 : (index - 1 + justifyContentOptions.length) % justifyContentOptions.length;
               return justifyContentOptions[newIndex];
+            });
+            break;
+          case 2:
+            setAlignItems((prev) => {
+              const index = alignItemOptions.indexOf(prev);
+              const newIndex = direction === 'down' 
+                ? (index + 1) % alignItemOptions.length
+                : (index - 1 + alignItemOptions.length) % alignItemOptions.length;
+              return alignItemOptions[newIndex];
             });
             break;
           case 3:
@@ -150,20 +171,28 @@ export default function Torso (props) {
     return (
       
       <div className="torso">
+
         <div className='left-side'>
             <div className='instructions'>
-                Use the four arrow keys (up/down/left/right) to change the orientation of the green shapes. Try to make them fit inside the blue outlines. Click Randomize or press R for a new target layout.
+                Use the four arrow keys (up/down/left/right) or click the buttons below to change the orientation of the green shapes. Try to make them fit inside the blue outlines. Click Randomize or press R for a new target layout.
             </div>
             <div className='controls'>
                 <button onClick={() => setButtonClicked(true)}>Randomize</button>
-                <button >Copy Code</button>
-
+                <button onClick={openModal}>Copy Code</button>
+                {isModalOpen && (
+                    <div className="modal">
+                    <div className="modal-content">
+                        <pre>{textToCopy}</pre>
+                        <button onClick={copyToClipboard}>Copy text to clipboard</button>
+                        <button onClick={closeModal}>Close</button>
+                    </div>
+                    </div>
+                )}
             </div>
             <div className="button-container">
 
-                <div className='button-column'>
-                    <div 
-                    className = 'label'
+                <div  
+                    className = 'button-column'
                     key={0}
                     >
                         flex-direction:
@@ -186,47 +215,17 @@ export default function Torso (props) {
                         </div>
                     ))}
                 </div>
-                </div>
 
-                <div className='button-column'>
-                    <div 
-                    className = 'label'
+                <div  
+                    className = 'button-column'
                     key={1}
-                    >
-                        align-items:
-                        {alignItemOptions.map((option) => (
-                        <div
-                        key={option} // Use a unique key for each element
-                        className={
-                            activeButton === 1 && alignItems === option
-                            ? 'buttonActive'
-                            : alignItems === option
-                            ? 'buttonSelected'
-                            : 'buttonUnselected'
-                        }
-                        onClick={() => {
-                            setAlignItems(option);
-                            setActiveButton(1);
-                        }}
-                        >
-                        {option + ";"}
-                        </div>
-                    ))}
-                    </div>
-
-                </div>
-
-                <div className='button-column'>
-                    <div 
-                    className = 'label'
-                    key={2}
                     >
                         justify-content:
                         {justifyContentOptions.map((option) => (
                         <div
                         key={option} // Use a unique key for each element
                         className={
-                            activeButton === 2 && justifyContent === option
+                            activeButton === 1 && justifyContent === option
                             ? 'buttonActive'
                             : justifyContent === option
                             ? 'buttonSelected'
@@ -234,20 +233,44 @@ export default function Torso (props) {
                         }
                         onClick={() => {
                             setJustifyContent(option);
+                            setActiveButton(1);
+                        }}
+                        >
+                        {option + ";"}
+                        </div>
+                    ))}
+                    
+                </div>
+
+                <div 
+                    className = 'button-column'
+                    key={2}
+                    >
+                        align-items:
+                        {alignItemOptions.map((option) => (
+                        <div
+                        key={option} // Use a unique key for each element
+                        className={
+                            activeButton === 2 && alignItems === option
+                            ? 'buttonActive'
+                            : alignItems === option
+                            ? 'buttonSelected'
+                            : 'buttonUnselected'
+                        }
+                        onClick={() => {
+                            setAlignItems(option);
                             setActiveButton(2);
                         }}
                         >
                         {option + ";"}
                         </div>
                     ))}
-                    </div>
-                    
+
                 </div>
 
-                <div className='button-column'>
 
-                    <div 
-                    className = 'label'
+                <div  
+                    className = 'button-column'
                     key = {3}
                     >
                         gap:
@@ -269,7 +292,6 @@ export default function Torso (props) {
                         {option + ";"}
                         </div>
                     ))}
-                    </div>
                     
                 </div>
 
