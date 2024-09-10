@@ -172,6 +172,12 @@ border: 1px solid rgba(255,255,255,0.25);
   flex-direction: column;
   width: 25%;
   align-items: center;
+  gap: 10px;
+}
+
+.instructions {
+  color: orange;
+  text-align: center;
 }
 
 .controls {

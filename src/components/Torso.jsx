@@ -69,6 +69,9 @@ export default function Torso (props) {
     // Handler function for arrow key presses
     const handleKeyDown = (event) => {
         switch (event.key) {
+          case 'r':
+            randomizeTarget();
+            break;
           case 'ArrowRight':
             setActiveButton((prev) => (prev + 1) % 4);
             break;
@@ -148,9 +151,12 @@ export default function Torso (props) {
       
       <div className="torso">
         <div className='left-side'>
+            <div className='instructions'>
+                Use the four arrow keys (up/down/left/right) to change the orientation of the green shapes. Try to make them fit inside the blue outlines. Click Randomize or press R for a new target layout.
+            </div>
             <div className='controls'>
-            <button onClick={() => setButtonClicked(true)}>Randomize</button>
-            <button >Copy Code</button>
+                <button onClick={() => setButtonClicked(true)}>Randomize</button>
+                <button >Copy Code</button>
 
             </div>
             <div className="button-container">
