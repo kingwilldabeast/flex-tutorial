@@ -1,10 +1,12 @@
+# Flex-Box Interactive Tutorial
+This interactive app demonstrates how to use the basic flex-box settings to orient items within a div.
+
+![alt text description](src/assets/flex-box.png)
+
 ## To add
 
 **What else do I need?**
-instructions to use arrow keys?
-pink GitHub icon and link
-export the flex-direction details? copy to clipboard?
-soft everything, including array of arrays?
-paddling?
+softcode everything, including array of arrays? Would make it easier to reorder
+padding?
 flex-wrap? 
-other align-items like baseline, for objects of diff height and width
+other options like baseline, start, end, for objects of diff height and width

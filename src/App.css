@@ -1,3 +1,13 @@
+@font-face {
+  font-family: bitwise; 
+  src: url(assets/bitwise.ttf);
+}
+
+@font-face {
+  font-family: flexi; 
+  src: url(assets/Flexi.ttf);
+}
+
 html, body, #root, .app {
   height: 100%;
   width: 100%;
@@ -39,6 +49,7 @@ background-size: 160px 160px;
 -webkit-backdrop-filter: blur(2px);
 backdrop-filter: blur(2px);
 border: 1px solid rgba(255,255,255,0.25);
+  font-family: bitwise;
 }
 
 .torso {
@@ -178,12 +189,39 @@ border: 1px solid rgba(255,255,255,0.25);
 .instructions {
   color: orange;
   text-align: center;
+  font-family: flexi;
 }
 
 .controls {
   display: flex;
   flex-direction: row;
   gap: 10px;
+  align-items: flex-end;
+}
+
+.github-logo, .github-logo:hover {
+  color: pink;
+  position: relative; 
+  
+}
+
+.github-logo::before,
+.github-logo::after {
+  color: pink;
+  content: ''; /* Empty content for the pseudo-elements */
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px; /* Thickness of the border */
+  background-color: pink; /* Color of the border */
+  transform: scaleX(0); /* Start with no border visible */
+  transition: transform 0.3s ease; /* Smooth transition for the border */
+}
+
+.github-logo:hover::before,
+.github-logo:hover::after {
+  transform: scaleX(1); /* Expand the borders on hover */
+  color: pink;
 }
 
 .button-container {
