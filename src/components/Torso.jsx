@@ -161,9 +161,7 @@ export default function Torso (props) {
                     key={0}
                     >
                         flex-direction:
-
-                            
-                        {directionOptions.map((option, index) => (
+                        {directionOptions.map((option) => (
                         <div
                         key={option} // Use a unique key for each element
                         className={
@@ -186,98 +184,87 @@ export default function Torso (props) {
 
                 <div className='button-column'>
                     <div 
-                    className = {activeButton === 1 ? 'labelActive' : 'label'}
+                    className = 'label'
                     key={1}
                     >
                         align-items:
+                        {alignItemOptions.map((option) => (
+                        <div
+                        key={option} // Use a unique key for each element
+                        className={
+                            activeButton === 1 && alignItems === option
+                            ? 'buttonActive'
+                            : alignItems === option
+                            ? 'buttonSelected'
+                            : 'buttonUnselected'
+                        }
+                        onClick={() => {
+                            setAlignItems(option);
+                            setActiveButton(1);
+                        }}
+                        >
+                        {option + ";"}
+                        </div>
+                    ))}
                     </div>
-                    <div
-                    className={activeButton === 1 && alignItems === alignItemOptions[0] ? 'buttonActive' : (alignItems === alignItemOptions[0] ? 'buttonSelected' : 'buttonUnselected')} 
-                    onClick={() => setAlignItems(alignItemOptions[0])}
-                    >
-                        flex-start;
-                    </div>
-                    <div 
-                    className={activeButton === 1 && alignItems === alignItemOptions[1] ? 'buttonActive' : (alignItems === alignItemOptions[1] ? 'buttonSelected' : 'buttonUnselected')} 
-                    onClick={() => setAlignItems(alignItemOptions[1])}
-                    >
-                        center;
-                    </div>
-                    <div 
-                    className={activeButton === 1 && alignItems === alignItemOptions[2] ? 'buttonActive' : (alignItems === alignItemOptions[2] ? 'buttonSelected' : 'buttonUnselected')} 
-                    onClick={() => setAlignItems(alignItemOptions[2])}
-                    >
-                        flex-end;
-                    </div>
+
                 </div>
 
                 <div className='button-column'>
                     <div 
-                    className = {activeButton === 2 ? 'labelActive' : 'label'}
+                    className = 'label'
                     key={2}
                     >
                         justify-content:
+                        {justifyContentOptions.map((option) => (
+                        <div
+                        key={option} // Use a unique key for each element
+                        className={
+                            activeButton === 2 && justifyContent === option
+                            ? 'buttonActive'
+                            : justifyContent === option
+                            ? 'buttonSelected'
+                            : 'buttonUnselected'
+                        }
+                        onClick={() => {
+                            setJustifyContent(option);
+                            setActiveButton(2);
+                        }}
+                        >
+                        {option + ";"}
+                        </div>
+                    ))}
                     </div>
-                    <div 
-                    className={activeButton === 2 && justifyContent === justifyContentOptions[0] ? 'buttonActive' : (justifyContent === justifyContentOptions[0] ? 'buttonSelected' : 'buttonUnselected')} 
-                    onClick={() => setJustifyContent(justifyContentOptions[0])}
-                    >
-                        flex-start;
-                    </div>
-                    <div 
-                    className={activeButton === 2 && justifyContent === justifyContentOptions[1] ? 'buttonActive' : (justifyContent === justifyContentOptions[1] ? 'buttonSelected' : 'buttonUnselected')} 
-                    onClick={() => setJustifyContent(justifyContentOptions[1])}
-                    >
-                        center;
-                    </div>
-                    <div 
-                    className={activeButton === 2 && justifyContent === justifyContentOptions[2] ? 'buttonActive' : (justifyContent === justifyContentOptions[2] ? 'buttonSelected' : 'buttonUnselected')} 
-                    onClick={() => setJustifyContent(justifyContentOptions[2])}
-                    >
-                        flex-end;
-                    </div>
-                    <div 
-                    className={activeButton === 2 && justifyContent === justifyContentOptions[3] ? 'buttonActive' : (justifyContent === justifyContentOptions[3] ? 'buttonSelected' : 'buttonUnselected')} 
-                    onClick={() => setJustifyContent(justifyContentOptions[3])}
-                    >
-                        space-between;
-                    </div>
-                    <div 
-                    className={activeButton === 2 && justifyContent === justifyContentOptions[4] ? 'buttonActive' : (justifyContent === justifyContentOptions[4] ? 'buttonSelected' : 'buttonUnselected')} 
-                    onClick={() => setJustifyContent(justifyContentOptions[4])}
-                    >
-                        space-around;
-                    </div>
-                    <div 
-                    className={activeButton === 2 && justifyContent === justifyContentOptions[5] ? 'buttonActive' : (justifyContent === justifyContentOptions[5] ? 'buttonSelected' : 'buttonUnselected')} 
-                    onClick={() => setJustifyContent(justifyContentOptions[5])}
-                    >
-                        space-evenly;
-                    </div>
+                    
                 </div>
 
                 <div className='button-column'>
 
                     <div 
-                    className = {activeButton === 3 ? 'labelActive' : 'label'}
+                    className = 'label'
                     key = {3}
                     >
                         gap:
+                        {gapOptions.map((option) => (
+                        <div
+                        key={option} // Use a unique key for each element
+                        className={
+                            activeButton === 3 && gap === option
+                            ? 'buttonActive'
+                            : gap === option
+                            ? 'buttonSelected'
+                            : 'buttonUnselected'
+                        }
+                        onClick={() => {
+                            setGap(option);
+                            setActiveButton(3);
+                        }}
+                        >
+                        {option + ";"}
+                        </div>
+                    ))}
                     </div>
-                    <div
-                    className={activeButton === 3 && gap === gapOptions[0] ? 'buttonActive' : (gap === gapOptions[0] ? 'buttonSelected' : 'buttonUnselected')} 
-                    onClick={() => setGap(gapOptions[0])}
-                    >
-                        0;
-                    </div>
-                    <div 
-                    className={activeButton === 3 && gap === gapOptions[1] ? 'buttonActive' : (gap === gapOptions[1] ? 'buttonSelected' : 'buttonUnselected')} 
-                    onClick={() => setGap(gapOptions[1])}
-                    >
-                        10px;
-                    </div>
-
-
+                    
                 </div>
 
             </div>  

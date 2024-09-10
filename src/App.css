@@ -214,8 +214,8 @@ border: 1px solid rgba(255,255,255,0.25);
 }
 
 .buttonActive {
-  border: 2px dashed orange;
-  background-color: white;
+  border: 2px solid orange;
+  background-color: orange;
   /* color: orange; */
   cursor: pointer;
   padding: 10px;
