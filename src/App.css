@@ -17,13 +17,8 @@ html, body, #root, .app {
 
 }
 
-
 .app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  background:
+    background:
       conic-gradient(at 10% 50%,#0000 75%,#202024 0),
       conic-gradient(at 10% 50%,#0000 75%,#202024 0) calc(1*32px) calc(3*32px),
       conic-gradient(at 10% 50%,#0000 75%,#202024 0) calc(2*32px) calc(1*32px),
@@ -36,6 +31,14 @@ html, body, #root, .app {
       conic-gradient(at 50% 10%,#0000 75%,#202024 0) calc(4*32px) calc(1*32px),
       #0d0f10;
 background-size: 160px 160px;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
 
 }
 
@@ -43,7 +46,10 @@ background-size: 160px 160px;
   /* border: 1px solid red; */
   color: pink;
   background-color: #4a4848;
-  width: 100%;
+  /* width: 100%; */
+  margin-top: 20px;
+  padding: 0 30px;
+  border-radius: 10px;
   text-align: center;
   background: rgba(255,255,255,0.3);
 -webkit-backdrop-filter: blur(2px);
@@ -60,6 +66,7 @@ border: 1px solid rgba(255,255,255,0.25);
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  /* overflow: scroll; */
 }
 
 .chart-container {

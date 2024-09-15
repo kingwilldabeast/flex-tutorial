@@ -10,3 +10,6 @@ softcode everything, including array of arrays? Would make it easier to reorder
 padding?
 flex-wrap? 
 other options like baseline, start, end, for objects of diff height and width
+
+npm run build
+surge ./dist flexbox-isenberg.surge.sh
